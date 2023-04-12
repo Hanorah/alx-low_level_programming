@@ -1,7 +1,7 @@
-# include <stdio.h>
-# include <std.lib>
-# include "main.h"
-/*create_array - creates an array of chars.
+#include "main.h"
+#include <stdlib.h>
+/**
+ * create_array - creates an array of chars.
  * @size: size of the array.
  * @c: storaged char
  *
