@@ -1,48 +1,29 @@
 #include "main.h"
 #include <stdlib.h>
-
-char *string_nconcat(char *s1, char *s2, unsigned int n);
 /**
- * string_nconcat - concatenates two strings.
- * @s1: first string.
- * @s2: second string.
- * @n: amount of bytes.
+ * array_range - creates an array of integers.
+ * @min: minimum value.
+ * @max: maximum value.
  *
- * Return: pointer to the allocated memory.
- * if malloc fails, status value is equal to 98.
+ * Return: pointer to the newly created array.
+ * if man > mix, returns NULL.
+ * if malloc fails, returns NULL.
  */
-char *string_nconcat(char *s1, char *s2, unsigned int n)
+int *array_range(int min, int max)
 {
-    char *s;
-    unsigned int i = 0, j = 0, len1 = 0, len2 = 0;
+	int *ar;
+	int i;
 
-    while (s1 && s1[len1])
-        len1++;
+	if (min > max)
+		return (NULL);
 
-    while (s2 && s2[len2])
-        len2++;
+	ar = malloc(sizeof(*ar) * ((max - min) + 1));
 
-    if (n < len2)
-        s = malloc(sizeof(char) * (len1 + n + 1));
-    else
-        s = malloc(sizeof(char) * (len1 + len2 + 1));
+	if (ar == NULL)
+		return (NULL);
 
-    if (!s)
-        return (NULL);
+	for (i = 0; min <= max; i++, min++)
+		ar[i] = min;
 
-    while (i < len1)
-    {
-        s[i] = s1[i];
-        i++;
-    }
-
-    while (n < len2 && i < (len1 + n))
-        s[i++] = s2[j++];
-
-    while (n >= len2 && i < (len1 + len2))
-        s[i++] = s2[j++];
-
-    s[i] = '\0';
-
-    return (s);
+	return (ar);
 }
